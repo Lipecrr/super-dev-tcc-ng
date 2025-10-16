@@ -117,8 +117,19 @@ export class AppConfigurator {
 
     ngOnInit() {
         if (isPlatformBrowser(this.platformId)) {
-            this.onPresetChange(this.layoutService.layoutConfig().preset);
+            this.enableDarkMode(),
+                this.onPresetChange(this.layoutService.layoutConfig().preset);
         }
+    }
+private enableDarkMode() {
+        this.layoutService.layoutConfig.update((state: any) => ({
+            ...state,
+            darkTheme: true,
+            surface: 'slate',
+            primary: 'fuchsia',
+            preset: "Nora",
+            menuMode: "overlay"
+        }));
     }
 
     surfaces: SurfacesType[] = [
